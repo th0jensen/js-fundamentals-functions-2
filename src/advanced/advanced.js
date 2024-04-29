@@ -71,15 +71,6 @@ const requestPOST = {
 // - body: the body in the request
 // - query: an object with the query parameters in the request
 
-const rawRequest = `
-POST /api/data HTTP/1.1
-Host: www.example.com
-Content-Type: application/json
-Content-Length: 36
-
-{"key1": "value1", "key2": "value2"}
-`
-
 function parseRequest(req) {
   const request = {
     method: '',
@@ -159,6 +150,7 @@ function parseRequest(req) {
 // eg: parseHeader('Authorization: Bearer your_access_token', { Host: 'www.example.com' })
 //        => { Host: 'www.example.com', Authorization: 'Bearer your_access_token'}
 // eg: parseHeader('', { Host: 'www.example.com' }) => { Host: 'www.example.com' }
+
 function parseHeader(header, headers) {
   if (header.length === 0) {
     return headers
@@ -199,6 +191,7 @@ function parseBody(body) {
 // It must return the parsed query as a JavaScript object or null if no query ? is present
 // eg: extractQuery('/api/data/123?someValue=example') => { someValue: 'example' }
 // eg: extractQuery('/api/data/123') => null
+
 function extractQuery(path) {
   const query = {}
   const pathArray = path.replace(/[?=&]/g, ' ').split(/\s+/)
